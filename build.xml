@@ -46,7 +46,7 @@
         <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
     </target>
 
-    <target name="resolve" depends="init-ivy">
+    <target name="resolve-test" depends="init-ivy">
         <!--<ivy:retrieve />-->
         <ivy:retrieve conf="test"
                       type="jar,bundle"
@@ -54,12 +54,12 @@
                       pattern="${lib}/[module]-[revision].[ext]"/>
     </target>
 
-    <target name="compile" depends="resolve">
+    <target name="compile">
         <mkdir dir="${main.build.dir.classes}"/>
         <javac srcdir="${main.src.dir}" destdir="${main.build.dir.classes}" includeantruntime="false"/>
     </target>
 
-    <target name="test-compile" depends="compile">
+    <target name="test-compile" depends="compile,resolve-test">
         <mkdir dir="${test.build.dir.classes}"/>
         <javac srcdir="${test.src.dir}" destdir="${test.build.dir.classes}" includeantruntime="false">
             <classpath refid="classpath.test"/>
