@@ -48,6 +48,8 @@
 
     <target name="resolve-test" depends="init-ivy">
         <!--<ivy:retrieve />-->
+
+        <!-- see conf "test" in ivy.xml -->
         <ivy:retrieve conf="test"
                       type="jar,bundle"
                       sync="true"
